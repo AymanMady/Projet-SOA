@@ -1,0 +1,47 @@
+<div id="main">
+  <header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+      <i class="bi bi-justify fs-3"></i>
+    </a>
+  </header>
+
+  <div class="page-heading">
+    <div class="page-title">
+      <div class="row">
+        <div class="col-12 col-md-6 order-md-1 order-last">
+          <h3>Modifier l'Article</h3>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Modifier l'Article</h4>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+                <label for="title">Titre :</label>
+                <input id="title" type="text" formControlName="title" placeholder="Titre" class="form-control" />
+                <br /><br />
+                <label for="categorie">Catégorie :</label>
+                <select id="categorie" formControlName="categorie" class="form-control">
+                  <option value="Technology">Technologie</option>
+                  <option value="Science">Science</option>
+                  <option value="Health">Santé</option>
+                </select>
+                <br /><br />
+                <label for="content">Contenu :</label>
+                <textarea id="content" formControlName="content" class="form-control" rows="10" placeholder="Contenu"></textarea>
+                <br /><br />
+                <button type="submit" class="btn btn-primary">Mettre à jour</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

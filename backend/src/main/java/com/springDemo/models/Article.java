@@ -24,9 +24,9 @@ public class Article {
 
     private LocalDateTime createdAt;
 
-    @ManyToOne
-    @JoinColumn(name = "abonnee_id", nullable = false)
-    private Abonnee abonnee;
+//    @ManyToOne
+//    @JoinColumn(name = "abonnee_id", nullable = false)
+//    private Abonnee abonnee;
 
     private String categorie;
 
@@ -65,13 +65,13 @@ public class Article {
         this.createdAt = createdAt;
     }
 
-    public Abonnee getAbonnee() {
-        return abonnee;
-    }
-
-    public void setAbonnee(Abonnee abonnee) {
-        this.abonnee = abonnee;
-    }
+//    public Abonnee getAbonnee() {
+//        return abonnee;
+//    }
+//
+//    public void setAbonnee(Abonnee abonnee) {
+//        this.abonnee = abonnee;
+//    }
 
     public String getCategorie() {
         return categorie;
