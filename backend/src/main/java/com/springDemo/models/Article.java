@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
@@ -22,11 +23,16 @@ public class Article {
     @Column(length = 1000)
     private String content;
 
-    private LocalDateTime createdAt;
+    @Column(updatable = false)
+    private LocalDate createdAt;
 
-//    @ManyToOne
-//    @JoinColumn(name = "abonnee_id", nullable = false)
-//    private Abonnee abonnee;
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDate.now();
+    }
+
+    private String image;
+
 
     private String categorie;
 
@@ -57,21 +63,22 @@ public class Article {
         this.content = content;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 
-//    public Abonnee getAbonnee() {
-//        return abonnee;
-//    }
-//
-//    public void setAbonnee(Abonnee abonnee) {
-//        this.abonnee = abonnee;
-//    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getCategorie() {
         return categorie;

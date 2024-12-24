@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ArticleService } from '../../../services/article.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-edit-article',
   imports: [CommonModule, ReactiveFormsModule],
@@ -44,8 +46,18 @@ export class EditArticleComponent {
   onSubmit() {
     if (this.articleForm.valid) {
       this.articleService.updatearticle(this.articleId, this.articleForm.value).subscribe(() => {
+        this.success();
         this.router.navigate(['/home/list-articles']);
       });
     }
   }
+
+  success(){
+    Swal.fire({
+      title: "Article modifié avec succès !",
+      icon: "success",
+      draggable: true
+    });
+  }
+
 }

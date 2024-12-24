@@ -1,0 +1,10 @@
+.image-upload {
+  display: flex;
+  align-items: center;
+}
+
+.img-preview {
+  max-width: 100px; /* Limite la largeur de l'image */
+  max-height: 100px; /* Limite la hauteur de l'image */
+  margin-left: 10px; /* Espacement entre l'input et l'image */
+}

@@ -47,11 +47,11 @@
                       <tr *ngFor="let article of articles">
                         <td class="text-bold-500">{{ article.title }}</td>
                         <td>{{ article.categorie }}</td>
-                        <td>{{ article.created_at }}</td>
+                        <td>{{ article.createdAt }}</td>
                         <td>
                           <button class="btn btn-warning" (click)="editArticle(article)">Modifier</button>
                           <button class="btn btn-danger" (click)="deleteArticle(article)">Supprimer</button>
-                          <button class="btn btn-info">Publier</button>
+                          <button class="btn btn-info" (click)="publierArticle(article)">Publier</button>
                         </td>
                       </tr>
                     </tbody>

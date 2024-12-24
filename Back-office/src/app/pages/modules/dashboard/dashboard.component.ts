@@ -3,6 +3,8 @@ import { Abonnee } from '../../../models/abonnee';
 import { Router } from '@angular/router';
 import { AbonneeService } from '../../../services/abonnee.service';
 import { CommonModule } from '@angular/common';
+import { Article } from '../../../models/article';
+import { ArticleService } from '../../../services/article.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +15,12 @@ import { CommonModule } from '@angular/common';
 export class DashboardComponent {
 
     abonnees: Abonnee[] = [];
+    articles: Article[] = [];
 
-    constructor(private abonneeService: AbonneeService, private router: Router) { }
+    nbr_articles : number = 0
+    nbr_abonnees : number = 0
+
+    constructor(private articleService: ArticleService,private abonneeService: AbonneeService, private router: Router) { }
 
     ngOnInit(): void {
       this.loadabonnees();
@@ -23,6 +29,7 @@ export class DashboardComponent {
     loadabonnees() {
       this.abonneeService.getAllabonnees().subscribe(data => {
         this.abonnees = data;
+        this.nbr_abonnees = data.length
       });
     }
 
@@ -30,6 +37,13 @@ export class DashboardComponent {
     deleteabonnee(abonnee: Abonnee) {
       this.abonneeService.deleteabonnee(abonnee.id).subscribe(() => {
         this.loadabonnees();
+      });
+    }
+
+    loadArticles() {
+      this.articleService.getAllarticles().subscribe(data => {
+        this.articles = data;
+        this.nbr_articles = data.length
       });
     }
 }

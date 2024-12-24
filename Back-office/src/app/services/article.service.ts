@@ -39,4 +39,11 @@ export class ArticleService {
       responseType: 'json'
     });
   }
+
+  sendEmailsToSubscribers(id: any): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/send-emails/${id}`, {
+      responseType: 'json'
+    });
+  }
+
 }
