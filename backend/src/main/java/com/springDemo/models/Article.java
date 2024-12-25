@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
@@ -22,12 +23,16 @@ public class Article {
     @Column(length = 1000)
     private String content;
 
-    private LocalDateTime createdAt;
+    @Column(updatable = false)
+    private LocalDate createdAt;
 
-    @ManyToOne
-    @JoinColumn(name = "abonnee_id", nullable = false)
-    private Abonnee abonnee;
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDate.now();
+    }
+
+    @Lob
+    private String image;
 
     private String categorie;
-
 }

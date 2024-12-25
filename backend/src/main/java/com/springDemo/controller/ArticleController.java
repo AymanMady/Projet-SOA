@@ -49,7 +49,7 @@ public class ArticleController {
         article.setContent(articleDetails.getContent());
         article.setCreatedAt(articleDetails.getCreatedAt());
         article.setCategorie(articleDetails.getCategorie());
-        article.setAbonnee(articleDetails.getAbonnee());
+        article.setImage(articleDetails.getImage());
 
         return articleRepository.save(article);
     }
