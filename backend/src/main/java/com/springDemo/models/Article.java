@@ -31,8 +31,8 @@ public class Article {
         this.createdAt = LocalDate.now();
     }
 
+    @Lob
     private String image;
-
 
     private String categorie;
 
