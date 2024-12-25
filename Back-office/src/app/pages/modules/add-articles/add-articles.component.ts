@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class AddArticlesComponent {
   articleForm: FormGroup;
-  imageBase64: string = ''; // Stockage temporaire de l'image encodée
+  imageBase64: string = ''; 
 
   constructor(
     private fb: FormBuilder,

@@ -9,9 +9,10 @@ import { Router } from '@angular/router';
 export class AuthComponent {
 
   logo : string = "assets/images/logo/logo.png";
-
+  
   constructor(private router: Router) { }
   login(){
+
     this.router.navigate(['/home']);
   }
 }

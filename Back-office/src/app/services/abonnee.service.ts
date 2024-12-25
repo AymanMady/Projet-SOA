@@ -7,7 +7,7 @@ import { Abonnee } from '../models/abonnee';
   providedIn: 'root'
 })
 export class AbonneeService {
-  private apiUrl = 'http://localhost:8081/abonnees';
+  private apiUrl = 'https://07w10ay1jh.execute-api.eu-north-1.amazonaws.com/prod/abonnees';
 
   constructor(private http: HttpClient) { }
 
