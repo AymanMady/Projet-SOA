@@ -35,4 +35,5 @@ public class Article {
     private String image;
 
     private String categorie;
+
 }

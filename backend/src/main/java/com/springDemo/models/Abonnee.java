@@ -21,6 +21,4 @@ public class Abonnee {
     private String email;
 
     private LocalDate date;
-
-
 }
