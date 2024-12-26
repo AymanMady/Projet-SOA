@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
   styleUrl: './list-articles.component.css'
 })
 export class ListArticlesComponent implements OnInit {
-
+  isLoading = false;
   articles: Article[] = [];
 
   constructor(private articleService: ArticleService, private router: Router) { }
@@ -23,11 +23,19 @@ export class ListArticlesComponent implements OnInit {
   }
 
   loadArticles() {
-    // Remplacez ceci par votre méthode pour récupérer les articles depuis l'API ou le service
-    this.articleService.getAllarticles().subscribe(data => {
-      this.articles = data;
-    });
+    this.isLoading = true; 
+    this.articleService.getAllarticles().subscribe(
+      (data) => {
+        this.articles = data;
+        this.isLoading = false; 
+      },
+      (error) => {
+        console.error(error);
+        this.isLoading = false; 
+      }
+    );
   }
+  
 
   editArticle(article: Article) {
     this.router.navigate(['/home/edit-articles', article.id]);
@@ -45,13 +53,16 @@ export class ListArticlesComponent implements OnInit {
       confirmButtonText: "Oui, supprimer"
     }).then((result) => {
       if (result.isConfirmed) {
+        this.isLoading = true;
         this.articleService.deletearticle(article.id).subscribe(
           () => {
             this.loadArticles();
             this.success('Article supprimé avec succès !');
+            this.isLoading = false;
           },
           (error) => {
             this.error('Une erreur est survenue lors de la suppression.');
+            this.isLoading = false;
           }
         );
       }
@@ -71,6 +82,7 @@ export class ListArticlesComponent implements OnInit {
       cancelButtonText: "Annuler"
     }).then((result) => {
       if (result.isConfirmed) {
+        this.isLoading = true;
         this.articleService.sendEmailsToSubscribers(article.id).subscribe(
           () => {
             this.loadArticles();
@@ -80,6 +92,7 @@ export class ListArticlesComponent implements OnInit {
               icon: "success",
               confirmButtonText: "OK"
             });
+            this.isLoading = false;
           },
           (error) => {
             Swal.fire({
@@ -88,6 +101,7 @@ export class ListArticlesComponent implements OnInit {
               icon: "error",
               confirmButtonText: "OK"
             });
+            this.isLoading = false;
           }
         );
       }

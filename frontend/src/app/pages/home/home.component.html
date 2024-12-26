@@ -1,3 +1,5 @@
+
+
 <div class="container">
   <div class="bg0 flex-wr-sb-c p-rl-20 p-tb-8">
       <div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6">
@@ -1951,6 +1953,11 @@
 
 	<!-- Latest -->
 	<section class="bg0 p-t-60 p-b-35">
+
+		<div *ngIf="isLoading" class="spinner-overlay">
+  <div class="spinner"></div>
+</div>
+
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-10 col-lg-12 p-b-20">

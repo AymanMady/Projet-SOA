@@ -13,7 +13,7 @@ import { ArticleService } from '../../../services/article.service';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-
+  isLoading = false;
     abonnees: Abonnee[] = [];
     articles: Article[] = [];
 
@@ -27,10 +27,12 @@ export class DashboardComponent {
     }
 
     loadabonnees() {
+      this.isLoading = true;
       this.abonneeService.getAllabonnees().subscribe(data => {
         this.abonnees = data;
         this.nbr_abonnees = data.length
       });
+      this.isLoading = false;
     }
 
 

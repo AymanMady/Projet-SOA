@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class AddArticlesComponent {
   articleForm: FormGroup;
   imageBase64: string = ''; 
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +43,7 @@ export class AddArticlesComponent {
 
   onSubmit(): void {
     if (this.articleForm.valid) {
+      this.isLoading = true;
       const newArticle: Article = {
         title: this.articleForm.value.title,
         categorie: this.articleForm.value.categorie,
@@ -53,11 +55,13 @@ export class AddArticlesComponent {
         (response) => {
           console.log('Article ajouté avec succès :', response);
           this.success();
+          this.isLoading = false;
           this.router.navigate(['/home/list-articles']);
         },
         (error) => {
           console.error('Erreur lors de l\'ajout de l\'article :', error);
           this.error('Erreur lors de l\'ajout de l\'article.');
+          this.isLoading = false;
         }
       );
     } else {

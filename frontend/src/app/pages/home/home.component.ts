@@ -1,6 +1,6 @@
 import { Abonnee } from './../../models/abonnee';
 import { AbonneeService } from './../../services/abonnee.service';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleService } from '../../services/article.service';
 import { Router, RouterLink } from '@angular/router';
@@ -16,13 +16,14 @@ import Swal from 'sweetalert2';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
+  isLoading = false;
 
   articles: Article[] = [];
   abonneeForm: FormGroup;
 
   constructor(private articleService: ArticleService,private abonneeService: AbonneeService, private router: Router
    , private fb: FormBuilder,
+   private cdr: ChangeDetectorRef,
   ) {
     this.abonneeForm = this.fb.group({
       email: ['', Validators.required],
@@ -35,6 +36,7 @@ export class HomeComponent {
 
    onSubmit(): void {
     if (this.abonneeForm.valid) {
+      this.isLoading = true;
       const newabonnee: Abonnee = {
         email: this.abonneeForm.value.email,
         date: this.currentDate
@@ -44,10 +46,12 @@ export class HomeComponent {
         (response) => {
           console.log('Vous avez abonnèe  avec succès :', response);
           this.success();
+          this.isLoading = false;
         },
         (error) => {
           console.error('Erreur lors de l\'ajout de l\'abonnement :', error);
           this.error('Erreur lors de l\'ajout de l\'abonnement.');
+          this.isLoading = false;
         }
       );
     } else {
@@ -60,8 +64,13 @@ export class HomeComponent {
   }
 
   loadArticles() {
+    this.isLoading = true;
     this.articleService.getAllarticles().subscribe(data => {
       this.articles = data;
+      console.log('isLoading:', this.isLoading);
+      this.isLoading = false;
+      
+      this.cdr.detectChanges(); // Forcer la détection
     });
   }
 

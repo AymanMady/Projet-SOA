@@ -12,6 +12,7 @@ import Swal from 'sweetalert2'
   styleUrl: './edit-article.component.css'
 })
 export class EditArticleComponent {
+  isLoading = false;
   articleForm: FormGroup;
   articleId: number = 0;
 
@@ -45,11 +46,14 @@ export class EditArticleComponent {
 
   onSubmit() {
     if (this.articleForm.valid) {
+      this.isLoading = true;
       this.articleService.updatearticle(this.articleId, this.articleForm.value).subscribe(() => {
         this.success();
+        this.isLoading = false;
         this.router.navigate(['/home/list-articles']);
       });
     }
+    this.isLoading = false;
   }
 
   success(){
