@@ -1934,10 +1934,10 @@
 								Get all latest content delivered to your email a few times a month.
 							</p>
 
-							<form class="size-a-9 pos-relative">
-								<input class="s-full f1-m-6 cl6 plh9 p-l-20 p-r-55" type="text" name="email" placeholder="Email">
+							<form class="size-a-9 pos-relative" (ngSubmit)="onSubmit()" [formGroup]="abonneeForm">
+								<input class="s-full f1-m-6 cl6 plh9 p-l-20 p-r-55" type="text"  placeholder="Email"  formControlName="email">
 
-								<button class="size-a-10 flex-c-c ab-t-r fs-16 cl9 hov-cl10 trans-03">
+								<button class="size-a-10 flex-c-c ab-t-r fs-16 cl9 hov-cl10 trans-03" type="submit">
 									<i class="fa fa-arrow-right"></i>
 								</button>
 							</form>
@@ -1961,191 +1961,33 @@
 					</div>
 
 					<div class="row p-t-35">
-						<div class="col-sm-6 p-r-25 p-r-15-sr991">
-							<!-- Item latest -->
+						<div class="col-sm-6 p-r-25 p-r-15-sr991" *ngFor="let article of articles" routerLink="/article/{{article.id}}">
 							<div class="m-b-45">
-								<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-									<img src="images/latest-01.jpg" alt="IMG">
+								<a  class="wrap-pic-w hov1 trans-03">
+                  <img *ngIf="article.image" [src]="'data:image/jpeg;base64,' + article.image" alt="{{ article.title }}" >
 								</a>
 
 								<div class="p-t-16">
 									<h5 class="p-b-5">
-										<a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">
-											You wish lorem ipsum dolor sit amet consectetur
+										<a  class="f1-m-3 cl2 hov-cl10 trans-03" >
+                      {{article.title}}
 										</a>
 									</h5>
 
 									<span class="cl8">
-										<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-											by John Alvarado
-										</a>
+
 
 										<span class="f1-s-3 m-rl-3">
 											-
 										</span>
 
 										<span class="f1-s-3">
-											Feb 18
 										</span>
 									</span>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-sm-6 p-r-25 p-r-15-sr991">
-							<!-- Item latest -->
-							<div class="m-b-45">
-								<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-									<img src="images/latest-02.jpg" alt="IMG">
-								</a>
-
-								<div class="p-t-16">
-									<h5 class="p-b-5">
-										<a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">
-											You wish lorem ipsum dolor sit amet consectetur
-										</a>
-									</h5>
-
-									<span class="cl8">
-										<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-											by John Alvarado
-										</a>
-
-										<span class="f1-s-3 m-rl-3">
-											-
-										</span>
-
-										<span class="f1-s-3">
-											Feb 16
-										</span>
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-6 p-r-25 p-r-15-sr991">
-							<!-- Item latest -->
-							<div class="m-b-45">
-								<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-									<img src="images/latest-03.jpg" alt="IMG">
-								</a>
-
-								<div class="p-t-16">
-									<h5 class="p-b-5">
-										<a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">
-											You wish lorem ipsum dolor sit amet consectetur
-										</a>
-									</h5>
-
-									<span class="cl8">
-										<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-											by John Alvarado
-										</a>
-
-										<span class="f1-s-3 m-rl-3">
-											-
-										</span>
-
-										<span class="f1-s-3">
-											Feb 15
-										</span>
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-6 p-r-25 p-r-15-sr991">
-							<!-- Item latest -->
-							<div class="m-b-45">
-								<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-									<img src="images/latest-04.jpg" alt="IMG">
-								</a>
-
-								<div class="p-t-16">
-									<h5 class="p-b-5">
-										<a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">
-											You wish lorem ipsum dolor sit amet consectetur
-										</a>
-									</h5>
-
-									<span class="cl8">
-										<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-											by John Alvarado
-										</a>
-
-										<span class="f1-s-3 m-rl-3">
-											-
-										</span>
-
-										<span class="f1-s-3">
-											Feb 13
-										</span>
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-6 p-r-25 p-r-15-sr991">
-							<!-- Item latest -->
-							<div class="m-b-45">
-								<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-									<img src="images/latest-05.jpg" alt="IMG">
-								</a>
-
-								<div class="p-t-16">
-									<h5 class="p-b-5">
-										<a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">
-											You wish lorem ipsum dolor sit amet consectetur
-										</a>
-									</h5>
-
-									<span class="cl8">
-										<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-											by John Alvarado
-										</a>
-
-										<span class="f1-s-3 m-rl-3">
-											-
-										</span>
-
-										<span class="f1-s-3">
-											Feb 10
-										</span>
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-6 p-r-25 p-r-15-sr991">
-							<!-- Item latest -->
-							<div class="m-b-45">
-								<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-									<img src="images/latest-06.jpg" alt="IMG">
-								</a>
-
-								<div class="p-t-16">
-									<h5 class="p-b-5">
-										<a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">
-											You wish lorem ipsum dolor sit amet consectetur
-										</a>
-									</h5>
-
-									<span class="cl8">
-										<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-											by John Alvarado
-										</a>
-
-										<span class="f1-s-3 m-rl-3">
-											-
-										</span>
-
-										<span class="f1-s-3">
-											Feb 09
-										</span>
-									</span>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 

@@ -1,11 +1,51 @@
+import { Article } from './../../models/article';
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ArticleService } from '../../services/article.service';
+import { FormBuilder } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-details',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })
 export class DetailsComponent {
 
+  articleId: number = 0;
+
+  article: Article = {
+    title: '',
+    categorie: '',
+    content: '',
+    createdAt: '',
+    image: ''
+  };
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private articleService: ArticleService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.articleId = +this.activatedRoute.snapshot.paramMap.get('id')!;
+    this.loadArticle();
+  }
+
+  loadArticle() {
+    this.articleService.getarticleById(this.articleId).subscribe(article => {
+      this.article = {
+        title: article.title,
+        categorie: article.categorie,
+        content: article.content,
+        createdAt: article.createdAt,
+        image: `data:image/jpeg;base64,${article.image}` 
+      };
+    });
+  }
+
 }
+
