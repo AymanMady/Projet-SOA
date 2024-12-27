@@ -4,14 +4,13 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleService } from '../../services/article.service';
 import { Router, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { CommonModule, NgIf } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule,RouterLink,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,RouterLink,FormsModule,ReactiveFormsModule, NgIf],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -21,9 +20,12 @@ export class HomeComponent {
   articles: Article[] = [];
   abonneeForm: FormGroup;
 
-  constructor(private articleService: ArticleService,private abonneeService: AbonneeService, private router: Router
-   , private fb: FormBuilder,
-   private cdr: ChangeDetectorRef,
+  constructor(
+    private articleService: ArticleService,
+    private abonneeService: AbonneeService,
+    private router: Router,
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef,
   ) {
     this.abonneeForm = this.fb.group({
       email: ['', Validators.required],
@@ -69,8 +71,7 @@ export class HomeComponent {
       this.articles = data;
       console.log('isLoading:', this.isLoading);
       this.isLoading = false;
-      
-      this.cdr.detectChanges(); // Forcer la détection
+      this.cdr.detectChanges();
     });
   }
 

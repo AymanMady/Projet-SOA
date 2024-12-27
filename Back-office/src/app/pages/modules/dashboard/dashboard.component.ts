@@ -45,7 +45,10 @@ export class DashboardComponent {
     loadArticles() {
       this.articleService.getAllarticles().subscribe(data => {
         this.articles = data;
+        console.log(data)
         this.nbr_articles = data.length
       });
     }
+
+    
 }
